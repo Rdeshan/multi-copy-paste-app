@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Multi Copy Paste</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    button { margin: 5px 0; width: 100%; }
+    textarea { width: 100%; height: 60px; }
+  </style>
+</head>
+<body>
+
+  <h2>Multi Copy Paste</h2>
+
+  <textarea id="slot1"></textarea>
+  <button onclick="copyToSlot('slot1')">Save Copy</button>
+  <button onclick="pasteFromSlot('slot1')">Paste</button>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
