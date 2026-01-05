@@ -87,56 +87,129 @@
       margin-bottom: 10px;
       color: #856404;
     }
+
+    .instruction-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .slots-container {
+      margin-top: 40px;
+    }
+
+    .slot-card {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+      border: 1px solid #e9ecef;
+    }
+
+    .slot-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .slot-number {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .clear-btn {
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .clear-btn:hover {
+      background: #c82333;
+    }
+
+    .slot-content {
+      background: #e9ecef;
+      padding: 10px;
+      border-radius: 6px;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 14px;
+      color: #333;
+    }
+
+    footer {
+      margin-top: 30px;
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Multi-Clipboard Manager</h1>
-    <p class="subtitle">Copy and paste multiple items with ease!</p>
-    
+    <header>
+      <h1>📋 Multi Copy Paste</h1>
+      <p class="subtitle">Copy multiple items and paste them later</p>
+    </header>
+
     <div class="instructions">
-      <div class="section">
-        <h2>📋 How to Copy</h2>
-        <p>Press <kbd>Ctrl</kbd> + <kbd>C</kbd> + <kbd>1-9</kbd> to copy text to slots 1-9</p>
-        <div class="examples">
-          <div class="example">
-            <kbd>Ctrl</kbd> + <kbd>C</kbd> + <kbd>1</kbd> → Copy to Slot 1
-          </div>
-          <div class="example">
-            <kbd>Ctrl</kbd> + <kbd>C</kbd> + <kbd>2</kbd> → Copy to Slot 2
-          </div>
-          <div class="example">
-            <kbd>Ctrl</kbd> + <kbd>C</kbd> + <kbd>3</kbd> → Copy to Slot 3
-          </div>
+      <h3>📖 How to Use</h3>
+      <div class="instruction-grid">
+        <div>
+          <strong>Copy to Slots:</strong>
+          <ul>
+            <li>Ctrl+C+1 → Save to Slot 1</li>
+            <li>Ctrl+C+2 → Save to Slot 2</li>
+            <li>Ctrl+C+3 → Save to Slot 3</li>
+          </ul>
         </div>
-      </div>
-
-      <div class="section">
-        <h2>📌 How to Paste</h2>
-        <p>Press <kbd>Ctrl</kbd> + <kbd>V</kbd> + <kbd>1-9</kbd> to paste from slots 1-9</p>
-        <div class="examples">
-          <div class="example">
-            <kbd>Ctrl</kbd> + <kbd>V</kbd> + <kbd>1</kbd> → Paste from Slot 1
-          </div>
-          <div class="example">
-            <kbd>Ctrl</kbd> + <kbd>V</kbd> + <kbd>2</kbd> → Paste from Slot 2
-          </div>
-          <div class="example">
-            <kbd>Ctrl</kbd> + <kbd>V</kbd> + <kbd>3</kbd> → Paste from Slot 3
-          </div>
+        <div>
+          <strong>Paste from Slots:</strong>
+          <ul>
+            <li>Ctrl+V+1 → Paste Slot 1</li>
+            <li>Ctrl+V+2 → Paste Slot 2</li>
+            <li>Ctrl+V+3 → Paste Slot 3</li>
+          </ul>
         </div>
-      </div>
-
-      <div class="section tips">
-        <h2>💡 Tips</h2>
-        <ul>
-          <li>You can store up to 9 different clipboard items</li>
-          <li>Each slot remembers its content until you overwrite it</li>
-          <li>Works system-wide across all applications</li>
-          <li>No need to paste previous items before copying new ones</li>
-        </ul>
       </div>
     </div>
+
+    <div class="slots-container">
+      <h3>Current Slots</h3>
+      
+      <div class="slot-card">
+        <div class="slot-header">
+          <span class="slot-number">Slot 1</span>
+          <button class="clear-btn" onclick="clearSlot(1)">Clear</button>
+        </div>
+        <div class="slot-content" id="slot1">(empty)</div>
+      </div>
+
+      <div class="slot-card">
+        <div class="slot-header">
+          <span class="slot-number">Slot 2</span>
+          <button class="clear-btn" onclick="clearSlot(2)">Clear</button>
+        </div>
+        <div class="slot-content" id="slot2">(empty)</div>
+      </div>
+
+      <div class="slot-card">
+        <div class="slot-header">
+          <span class="slot-number">Slot 3</span>
+          <button class="clear-btn" onclick="clearSlot(3)">Clear</button>
+        </div>
+        <div class="slot-content" id="slot3">(empty)</div>
+      </div>
+    </div>
+
+    <footer>
+      <p>💡 App runs in system tray. Close this window to minimize.</p>
+    </footer>
   </div>
+
+  <script src="renderer.js"></script>
 </body>
 </html>

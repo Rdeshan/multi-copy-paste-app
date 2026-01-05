@@ -7,11 +7,8 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+    height: 100vh;
+    overflow: auto;
 }
 
 .container {
@@ -23,11 +20,15 @@ body {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
-h1 {
-    color: #333;
+header {
     text-align: center;
-    margin-bottom: 10px;
-    font-size: 2.5em;
+    color: white;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
 }
 
 .subtitle {
@@ -35,12 +36,47 @@ h1 {
     color: #666;
     margin-bottom: 40px;
     font-size: 1.1em;
+    font-size: 14px;
+    opacity: 0.9;
 }
 
 .instructions {
     display: flex;
     flex-direction: column;
     gap: 30px;
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.instructions h3 {
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 16px;
+}
+
+.instruction-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.instruction-grid ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.instruction-grid li {
+    padding: 5px 0;
+    font-size: 13px;
+    color: #555;
+}
+
+.instruction-grid strong {
+    color: #667eea;
+    font-size: 14px;
 }
 
 .section {
@@ -112,4 +148,105 @@ kbd {
     color: #667eea;
     font-weight: bold;
     font-size: 1.2em;
+}
+
+.slots-container {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.slots-container h3 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 16px;
+}
+
+.slot-card {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.slot-card:hover {
+    border-color: #667eea;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+}
+
+.slot-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.slot-number {
+    font-weight: bold;
+    color: #667eea;
+    font-size: 14px;
+}
+
+.clear-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.3s;
+}
+
+.clear-btn:hover {
+    background: #c82333;
+}
+
+.slot-content {
+    background: white;
+    padding: 10px;
+    border-radius: 4px;
+    min-height: 40px;
+    max-height: 80px;
+    overflow-y: auto;
+    font-size: 13px;
+    color: #495057;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.slot-content:empty::before {
+    content: '(empty)';
+    color: #adb5bd;
+    font-style: italic;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+/* Scrollbar styling */
+.slot-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.slot-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.slot-content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+.slot-content::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
