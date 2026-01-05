@@ -2,7 +2,8 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Multi Copy Paste</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Clipboard Manager</title>
   <style>
     * {
       margin: 0;
@@ -26,166 +27,201 @@
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     }
 
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+      text-align: center;
+      font-size: 32px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 18px;
+    }
+
+    .instructions {
+      margin-top: 20px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
     h2 {
       color: #333;
-      margin-bottom: 30px;
-      text-align: center;
-      font-size: 28px;
+      margin-bottom: 15px;
+      font-size: 24px;
     }
 
-    .slot-container {
+    .examples {
       background: #f8f9fa;
-      padding: 20px;
+      padding: 15px;
       border-radius: 8px;
-      margin-bottom: 20px;
-      border: 2px solid #e9ecef;
-      transition: all 0.3s ease;
+      border: 1px solid #e9ecef;
     }
 
-    .slot-container:hover {
-      border-color: #667eea;
-      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
-    }
-
-    .slot-label {
-      font-weight: 600;
-      color: #495057;
+    .example {
+      background: #e9ecef;
+      padding: 10px;
+      border-radius: 6px;
       margin-bottom: 10px;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    textarea {
-      width: 100%;
-      height: 80px;
-      padding: 12px;
-      border: 2px solid #dee2e6;
-      border-radius: 6px;
-      font-size: 14px;
       font-family: 'Consolas', 'Monaco', monospace;
-      resize: vertical;
-      transition: border-color 0.3s ease;
-    }
-
-    textarea:focus {
-      outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-    }
-
-    .button-group {
-      display: flex;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    button {
-      flex: 1;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 6px;
       font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
     }
 
-    .btn-copy {
-      background: #667eea;
-      color: white;
+    .tips {
+      background: #fff3cd;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #ffeeba;
     }
 
-    .btn-copy:hover {
-      background: #5568d3;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    .tips ul {
+      list-style-type: disc;
+      padding-left: 20px;
     }
 
-    .btn-paste {
-      background: #28a745;
-      color: white;
+    .tips li {
+      margin-bottom: 10px;
+      color: #856404;
     }
 
-    .btn-paste:hover {
-      background: #218838;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+    .instruction-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
     }
 
-    .btn-clear {
+    .slots-container {
+      margin-top: 40px;
+    }
+
+    .slot-card {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+      border: 1px solid #e9ecef;
+    }
+
+    .slot-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .slot-number {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .clear-btn {
       background: #dc3545;
       color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 5px 10px;
+      cursor: pointer;
     }
 
-    .btn-clear:hover {
+    .clear-btn:hover {
       background: #c82333;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
     }
 
-    button:active {
-      transform: translateY(0);
-    }
-
-    .notification {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #28a745;
-      color: white;
-      padding: 15px 25px;
+    .slot-content {
+      background: #e9ecef;
+      padding: 10px;
       border-radius: 6px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: 1000;
-      font-weight: 600;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 14px;
+      color: #333;
     }
 
-    .notification.show {
-      opacity: 1;
+    footer {
+      margin-top: 30px;
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .important-note {
+      background: #fff3cd;
+      padding: 10px;
+      border-radius: 6px;
+      margin-top: 15px;
+      border: 1px solid #ffeeba;
+      color: #856404;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>📋 Multi Copy Paste</h2>
+    <header>
+      <h1>📋 Multi Copy Paste</h1>
+      <p class="subtitle">Copy multiple items and paste them later</p>
+    </header>
 
-    <div class="slot-container">
-      <div class="slot-label">Slot 1</div>
-      <textarea id="slot1" placeholder="Enter or paste your text here..."></textarea>
-      <div class="button-group">
-        <button class="btn-copy" onclick="copyToSlot('slot1')">💾 Save Copy</button>
-        <button class="btn-paste" onclick="pasteFromSlot('slot1')">📄 Paste</button>
-        <button class="btn-clear" onclick="clearSlot('slot1')">🗑️ Clear</button>
+    <div class="instructions">
+      <h3>📖 How to Use</h3>
+      <div class="instruction-grid">
+        <div>
+          <strong>Copy to Slots:</strong>
+          <ul>
+            <li>Ctrl+C+1 → Save to Slot 1</li>
+            <li>Ctrl+C+2 → Save to Slot 2</li>
+            <li>Ctrl+C+3 → Save to Slot 3</li>
+          </ul>
+        </div>
+        <div>
+          <strong>Paste from Slots:</strong>
+          <ul>
+            <li>Alt+1 → Paste Slot 1</li>
+            <li>Alt+2 → Paste Slot 2</li>
+            <li>Alt+3 → Paste Slot 3</li>
+          </ul>
+        </div>
+      </div>
+      <div class="important-note">
+        <strong>⚠️ Important:</strong> After pressing Alt+1/2/3, immediately press Ctrl+V to paste the content.
       </div>
     </div>
 
-    <div class="slot-container">
-      <div class="slot-label">Slot 2</div>
-      <textarea id="slot2" placeholder="Enter or paste your text here..."></textarea>
-      <div class="button-group">
-        <button class="btn-copy" onclick="copyToSlot('slot2')">💾 Save Copy</button>
-        <button class="btn-paste" onclick="pasteFromSlot('slot2')">📄 Paste</button>
-        <button class="btn-clear" onclick="clearSlot('slot2')">🗑️ Clear</button>
+    <div class="slots-container">
+      <h3>Current Slots</h3>
+      
+      <div class="slot-card">
+        <div class="slot-header">
+          <span class="slot-number">Slot 1</span>
+          <button class="clear-btn" onclick="clearSlot(1)">Clear</button>
+        </div>
+        <div class="slot-content" id="slot1">(empty)</div>
+      </div>
+
+      <div class="slot-card">
+        <div class="slot-header">
+          <span class="slot-number">Slot 2</span>
+          <button class="clear-btn" onclick="clearSlot(2)">Clear</button>
+        </div>
+        <div class="slot-content" id="slot2">(empty)</div>
+      </div>
+
+      <div class="slot-card">
+        <div class="slot-header">
+          <span class="slot-number">Slot 3</span>
+          <button class="clear-btn" onclick="clearSlot(3)">Clear</button>
+        </div>
+        <div class="slot-content" id="slot3">(empty)</div>
       </div>
     </div>
 
-    <div class="slot-container">
-      <div class="slot-label">Slot 3</div>
-      <textarea id="slot3" placeholder="Enter or paste your text here..."></textarea>
-      <div class="button-group">
-        <button class="btn-copy" onclick="copyToSlot('slot3')">💾 Save Copy</button>
-        <button class="btn-paste" onclick="pasteFromSlot('slot3')">📄 Paste</button>
-        <button class="btn-clear" onclick="clearSlot('slot3')">🗑️ Clear</button>
-      </div>
-    </div>
+    <footer>
+      <p>💡 App runs in system tray. Close this window to minimize.</p>
+    </footer>
   </div>
-
-  <div id="notification" class="notification"></div>
 
   <script src="renderer.js"></script>
 </body>
