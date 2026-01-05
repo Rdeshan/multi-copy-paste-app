@@ -143,20 +143,22 @@ function registerShortcuts() {
     setTimeout(() => copyToSlot(3), 100);
   });
   
-  // Paste shortcuts: Ctrl+V+1, Ctrl+V+2, Ctrl+V+3
-  globalShortcut.register('CommandOrControl+V+1', () => {
+  // Paste shortcuts: Alt+1, Alt+2, Alt+3 (changed to avoid conflicts)
+  globalShortcut.register('Alt+1', () => {
     pasteFromSlot(1);
   });
   
-  globalShortcut.register('CommandOrControl+V+2', () => {
+  globalShortcut.register('Alt+2', () => {
     pasteFromSlot(2);
   });
   
-  globalShortcut.register('CommandOrControl+V+3', () => {
+  globalShortcut.register('Alt+3', () => {
     pasteFromSlot(3);
   });
   
   console.log('✅ All shortcuts registered successfully!');
+  console.log('📋 Copy: Ctrl+C+1/2/3');
+  console.log('📝 Paste: Alt+1/2/3');
 }
 
 function unregisterShortcuts() {
